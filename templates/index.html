@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>APUML</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/css/styles.css">
+  <script src="https://kit.fontawesome.com/95496bc55b.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="static/js/index.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+  <section id="title">
+    <div class="container-fluid">
+      <!-- Nav Bar -->
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href=""><img src="static/images/logo.png" alt="logo" class="logimg">APUML</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/statistics">Statistics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- Title -->
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>Safety doesn't happen by accident.</h1>
+          <p class="main-text">
+            Accidents can be traumatizing. APUML uses a machine learning algorithm to predict a potential accident and helps prevent it.
+          </p>
+          <button type="button" class="btn btn-dark btn-lg download-button" onClick="document.getElementById('form-sec').scrollIntoView();"><i class="fas fa-car"></i> Get Started</button>
+        </div>
+        <div class="col-lg-4">
+          <img src="static/images/P4339.png" alt="safety-sign" class="safimg">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+
+  <section id="about">
+    <div>
+      <h3 style="text-decoration: underline; font-size: 40px">About</h3>
+      <p>APUML is an initiative taken by our team to save lives using modern technology. Our website uses machine learning to determine the next potential accident and tries to help prevent it, improving itself in the process.</p>
+    </div>
+  </section>
+  <!-- Form -->
+  <section id="form-sec">
+    <button class="btn btn-success rounded" id="find-me">Find Conditions</button><br/>
+    <p id = "status"></p>
+    <form action="/" method="post">
+      <div class="row">
+        <div class="col col-lg-6">
+          <div class="mb-3">
+              <input type="text" name="lat" id="lat" class="form-control" placeholder='Latitude'>
+            </div>
+          <div class="mb-3">
+              <input type="text" name="name" class="form-control" placeholder='Name'>
+            </div>
+          <div class="mb-3">
+              <input type="text" name="age" class="form-control" placeholder='Age of Driver'>
+          </div>
+          <div class="mb-3">
+            <select name="gender" class="form-select form-control" aria-label="">
+              <option selected>Gender</option>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <select name="vehicle_type" class="form-select form-control" aria-label="">
+              <option selected>Vehicle Type</option>
+              <option value="1">Pedal cycle</option>
+              <option value="4">Motorcycle</option>
+              <option value="5">Motorcycle over 500cc</option>
+              <option value="8">Taxi/Private hire car</option>
+              <option value="9">Car</option>
+              <option value="10">Minibus</option>
+              <option value="11">Bus or coach</option>
+              <option value="19">Van</option>
+              <option value="20">Goods over 3.5t. and under 7.5t</option>
+              <option value="21">Goods 7.5 tonnes mgw and over</option>
+              <option value="90">Other vehicle</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <select name="day" class="form-select form-control" id="day_of_the_week">
+              <option SELECTED>Day of the week</option>
+              {% for i in range(days|length) %}
+              <option value="{{i+1}}">{{days[i]}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <select class="form-select form-control" name="light_condition" id="light" >
+              <option SELECTED>Light Conditions</option>
+              <option value="1">Daylight</option>
+              <option value="4">Darkness - lights lit</option>
+              <option value="5">Darkness - lights unlit</option>
+              <option value="6">Darkness - no lighting</option>
+            </select>
+          </div>
+        </div>
+        <div class="col col-lg-6">
+          <div class="mb-3">
+              <input type="text" name="lon" id="lon" class="form-control" placeholder='Longitude'>
+          </div>
+          <div class="mb-3">
+              <input type="text" name="vehicle_age" class="form-control" placeholder='Age of vehicle(in years)'>
+          </div>
+           <div class="mb-3">
+              <input type="text" name="v_capacity" class="form-control" placeholder='Engine Capacity (cc)'>
+          </div>
+          <div class="mb-3">
+            <select name="road_condition" class="form-select form-control" id="road_condition">
+              <option SELECTED>Road Condition</option>
+              {% for i in range(road_conditions|length) %}
+              <option value="{{i+1}}">{{road_conditions[i]}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <select name="weather_condition" class="form-select form-control" id="weather_condition">
+              <option SELECTED>Weather Condition</option>
+              {% for i in range(weather_conditions|length) %}
+              <option value="{{i+1}}">{{weather_conditions[i]}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <div class="row">
+            <div class="col">
+              <label>Speed Limit (mph)</label>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="speed_limit" value="30" id="speedlimit">
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </section>
+  <!-- Footer -->
+
+  <footer id="footer">
+    <div class="container-fluid">
+      <i class="social-icon fab fa-linkedin"></i>
+      <i class="social-icon fab fa-instagram"></i>
+      <i class="social-icon fas fa-envelope"></i>
+      <p>© Copyright 2021 APUML</p>
+    </div>
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <style>
+        body{
+            background-color: #75cfb8;
+            color: #fff;
+            text-align: center;
+        }
+        h1{
+            text-align: center;
+        }
+        button{
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chances of having an accident are: </h1>
+    {% if prediction[0] == 1 %}
+    <h1 style="color: red;"><em>Severe</em></h1>
+    <form action="/sms" method="POST">
+        <p>Send an sms to the emergency department in just a click..</p>
+        <button type="submit">Send SMS</button>
+    </form>
+    {% elif prediction[0] == 2 %}
+    <h1 style="color: yellow;">Moderate</h1>
+    {% else %}
+    <h1 style="color: green;">Slight</h1>
+    {% endif %}
+</body>
+</html>
